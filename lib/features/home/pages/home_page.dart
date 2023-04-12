@@ -5,6 +5,8 @@ import 'package:simple_weather/domain/models/weather_model.dart';
 import 'package:simple_weather/domain/repositories/weather_repository.dart';
 import 'package:simple_weather/features/home/cubit/home_cubit.dart';
 
+import '../../../data/remote_data_sources/weather_remote_data_source.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({
     Key? key,
@@ -14,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit(
-        WeatherRepository(),
+        WeatherRepository(WeatherRemoteDataSource()),
       ),
       child: BlocListener<HomeCubit, HomeState>(
         listener: (context, state) {
